@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>wbk Institute of Production Engineering</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.12.0/cdn.min.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary': '#00695C',
+            'primary-light': '#4DB6AC',
+            'secondary': '#004D40',
+          },
+          fontFamily: {
+            'sans': ['Inter', 'sans-serif'],
+          },
+          maxWidth: {
+            '8xl': '88rem',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    .animate-scroll {
+      animation: scroll 30s linear infinite;
+    }
+
+    .logo-slider {
+      height: 100px;
+      margin: auto;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      background: white;
+      padding: 20px 0;
+    }
+
+    .logo-slide-track {
+      animation: scroll 40s linear infinite;
+      display: flex;
+      width: calc(250px * 14);
+    }
+
+    .logo-slide {
+      height: 100px;
+      width: 250px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-slide img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
+</head>
+
+<body class="font-sans text-gray-900">
+  <!-- Hero Slider -->
+  <div x-data="{ slide: 0, images: ['https://images.unsplash.com/photo-1612178537253-bccd437b730e?q=80&w=1920&auto=format&fit=crop', 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?q=80&w=1920&auto=format&fit=crop', 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?q=80&w=1920&auto=format&fit=crop'] }"
+       x-init="setInterval(() => slide = (slide + 1) % images.length, 4000)" 
+       class="relative w-full h-[80vh] overflow-hidden">
+    <template x-for="(image, index) in images" :key="index">
+      <div x-show="slide === index" 
+           class="absolute inset-0 transition-opacity duration-700" 
+           x-transition:enter="ease-out duration-700" 
+           x-transition:enter-start="opacity-0" 
+           x-transition:enter-end="opacity-100">
+        <img :src="image" alt="Slide image" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black bg-opacity-50">
+          <div class="flex flex-col">
+            <div class="flex-1 flex items-center justify-center py-16 md:py-24">
+              <h1 class="text-white text-2xl md:text-5xl font-bold text-center px-8 md:px-16 max-w-5xl leading-tight">
+                FST – Flüssigsalztechnologie
+              </h1>
+            </div>
+            
+            <!-- Cards at the bottom -->
+            <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 w-full">
+              <div class="grid md:grid-cols-2 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-primary text-white rounded-xl shadow-lg p-8 hover:bg-secondary transition-colors duration-300">
+                  <h3 class="text-2xl font-semibold mb-4">Akademische Mitarbeitende (w/m/d) gesucht</h3>
+                  <p class="text-lg mb-6 text-gray-100">Hier geht es zu den ausgeschriebenen Stellen</p>
+                  <a href="#" class="group inline-flex items-center text-white hover:text-gray-200 transition-colors duration-300">
+                    <span class="text-lg">Learn More</span>
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                  </a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-primary text-white rounded-xl shadow-lg p-8 hover:bg-secondary transition-colors duration-300">
+                  <h3 class="text-2xl font-semibold mb-4">Abschlussarbeiten</h3>
+                  <p class="text-lg mb-6 text-gray-100">Hier geht es zu den ausgeschriebenen Arbeiten</p>
+                  <a href="#" class="group inline-flex items-center text-white hover:text-gray-200 transition-colors duration-300">
+                    <span class="text-lg">Learn More</span>
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                  </a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-primary text-white rounded-xl shadow-lg p-8 hover:bg-secondary transition-colors duration-300">
+                  <h3 class="text-2xl font-semibold mb-4">SFB1574 - Kreislauffabrik</h3>
+                  <p class="text-lg mb-6 text-gray-100">Informationen zu unserem Sonderforschungsbereich</p>
+                  <a href="#" class="group inline-flex items-center text-white hover:text-gray-200 transition-colors duration-300">
+                    <span class="text-lg">Learn More</span>
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                  </a>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-primary text-white rounded-xl shadow-lg p-8 hover:bg-secondary transition-colors duration-300">
+                  <h3 class="text-2xl font-semibold mb-4">Frühjahrstagung 2025</h3>
+                  <p class="text-lg mb-6 text-gray-100">Informationen zur kommenden Frühjahrstagung</p>
+                  <a href="#" class="group inline-flex items-center text-white hover:text-gray-200 transition-colors duration-300">
+                    <span class="text-lg">Learn More</span>
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+
+
+  <!-- Research Areas -->
+  <section class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 my-16">
+    <h2 class="text-3xl font-bold text-gray-900 border-b-2 border-primary inline-block mb-12">
+      Aktuelle Forschungsgebiete
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Area 1 -->
+      <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250&q=80" alt="TES Integration" class="w-full h-48 object-cover rounded-lg mb-6">
+        <h3 class="text-xl font-semibold mb-4 text-gray-900">TES Integration in Industriesektor</h3>
+        <p class="text-gray-600 leading-relaxed">
+          Optimierung und Flexibilisierung der Prozesswärme für energieintensive Unternehmen durch maßgeschneiderte Integrationskonzepte von thermischen Energiespeichern.
+        </p>
+      </div>
+      
+      <!-- Area 2 -->
+      <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250&q=80" alt="Experimental Research" class="w-full h-48 object-cover rounded-lg mb-6">
+        <h3 class="text-xl font-semibold mb-4 text-gray-900">Experimentale Untersuchung</h3>
+        <p class="text-gray-600 leading-relaxed">
+          Demonstration und Validierung von Flüssigsalzkreislauf- und Komponenten für industrielle Prozesse und Fusionsreaktor DEMO.
+        </p>
+      </div>
+      
+      <!-- Area 3 -->
+      <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250&q=80" alt="Heat Exchanger" class="w-full h-48 object-cover rounded-lg mb-6">
+        <h3 class="text-xl font-semibold mb-4 text-gray-900">Hochleistungswärmetauscher</h3>
+        <p class="text-gray-600 leading-relaxed">
+          Entwicklung patentierter Fertigungsverfahren für verbesserte Wärmeübertragung und Kompaktbauweise in Hochleistungsanwendungen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Salt Properties Table -->
+  <section class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 my-16">
+    <h2 class="text-3xl font-bold text-gray-900 mb-12">Salt Properties Comparison</h2>
+    <div class="grid md:grid-cols-4 gap-6">
+      <!-- Properties Column -->
+      <div class="bg-primary text-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border-2 border-primary">
+        <h3 class="text-2xl font-semibold mb-8">Eigenschaften</h3>
+        <div class="space-y-8">
+          <div class="py-2 text-lg">Zusammensetzung [Wt %]</div>
+          <div class="py-2 text-lg">Dichte ρ [kg/m³]</div>
+          <div class="py-2 text-lg">Spezifische Wärmekapazität cv [J/(kg K)]</div>
+          <div class="py-2 text-lg">Schmelzpunkt [°C]</div>
+          <div class="py-2 text-lg">Max. Temperatur [°C]</div>
+          <div class="py-2 text-lg">Vol. Energiespeicherdichte [kWh/m³]</div>
+        </div>
+      </div>
+
+      <!-- Solarsalz -->
+      <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border-2 border-primary">
+        <h3 class="text-2xl font-semibold mb-8 text-primary">Solarsalz</h3>
+        <div class="space-y-8">
+          <div class="py-2 text-lg">40 NaNO₃-60 KNO₃</div>
+          <div class="py-2 text-lg">2090-0.636T</div>
+          <div class="py-2 text-lg">1443+0.172T</div>
+          <div class="py-2 text-lg">220</div>
+          <div class="py-2 text-lg">600</div>
+          <div class="py-2 font-bold text-3xl text-primary">322</div>
+        </div>
+      </div>
+
+      <!-- HITEC -->
+      <div class="bg-secondary text-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border-2 border-secondary">
+        <h3 class="text-2xl font-semibold mb-8">HITEC</h3>
+        <div class="space-y-8">
+          <div class="py-2 text-lg">7 NaNO₃-53 KNO₃-40 NaNO₂</div>
+          <div class="py-2 text-lg">1938-0.732T</div>
+          <div class="py-2 text-lg">1.560-0.001T</div>
+          <div class="py-2 text-lg">142</div>
+          <div class="py-2 text-lg">535</div>
+          <div class="py-2 font-bold text-3xl">267</div>
+        </div>
+      </div>
+
+      <!-- HITEC XL -->
+      <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border-2 border-primary">
+        <h3 class="text-2xl font-semibold mb-8 text-primary">HITEC XL</h3>
+        <div class="space-y-8">
+          <div class="py-2 text-lg">7 NaNO₃-45 KNO₃-48 Ca(NO₃)₂</div>
+          <div class="py-2 text-lg">2240-0.827T</div>
+          <div class="py-2 text-lg">1542-0.322T</div>
+          <div class="py-2 text-lg">120</div>
+          <div class="py-2 text-lg">500</div>
+          <div class="py-2 font-bold text-3xl text-primary">243</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="px-6 md:px-20 mt-16 bg-gray-50 py-16">
+    <div class="max-w-8xl mx-auto">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-2">Our People</h2>
+        <p class="text-3xl font-extrabold text-primary mb-10">Meet the Researchers</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Team Member 1 -->
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300">
+          <img class="h-40 w-40 rounded-full mx-auto object-cover border-4 border-primary" 
+               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=160&h=160&q=80" 
+               alt="Prof. Dr. [Name]">
+          <h3 class="mt-4 text-xl font-semibold text-gray-900">Prof. Dr. [Name]</h3>
+          <p class="text-sm text-primary font-medium">Group Leader</p>
+          <p class="mt-2 text-gray-600">
+            Specializes in thermal energy systems and leads the FST research group.
+          </p>
+          <div class="mt-4 flex justify-center space-x-3">
+            <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+              <i class="fas fa-envelope text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300">
+          <img class="h-40 w-40 rounded-full mx-auto object-cover border-4 border-primary" 
+               src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=160&h=160&q=80" 
+               alt="Xiuyang [Surname]">
+          <h3 class="mt-4 text-xl font-semibold text-gray-900">Xiuyang [Surname]</h3>
+          <p class="text-sm text-primary font-medium">PhD Candidate</p>
+          <p class="mt-2 text-gray-600">
+            Researching advanced salt compositions for high-density energy storage.
+          </p>
+          <div class="mt-4 flex justify-center space-x-3">
+            <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+              <i class="fas fa-envelope text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300">
+          <img class="h-40 w-40 rounded-full mx-auto object-cover border-4 border-primary" 
+               src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=160&h=160&q=80" 
+               alt="Jan Bacher">
+          <h3 class="mt-4 text-xl font-semibold text-gray-900">Jan Bacher</h3>
+          <p class="text-sm text-primary font-medium">Research Associate</p>
+          <p class="mt-2 text-gray-600">
+            Focuses on thermochemical reactor design and system integration.
+          </p>
+          <div class="mt-4 flex justify-center space-x-3">
+            <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+              <i class="fas fa-envelope text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Team Member 4 -->
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300">
+          <img class="h-40 w-40 rounded-full mx-auto object-cover border-4 border-primary" 
+               src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=160&h=160&q=80" 
+               alt="Selina Weber">
+          <h3 class="mt-4 text-xl font-semibold text-gray-900">Selina Weber</h3>
+          <p class="text-sm text-primary font-medium">Master's Student</p>
+          <p class="mt-2 text-gray-600">
+            Working on experimental validation of salt-based storage materials.
+          </p>
+          <div class="mt-4 flex justify-center space-x-3">
+            <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+              <i class="fas fa-envelope text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner Logos Carousel -->
+  <section class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 my-16">
+    <h2 class="text-3xl font-bold text-gray-900 mb-12">Our Partners</h2>
+    <div class="logo-slider">
+      <div class="logo-slide-track">
+        <!-- First set of slides -->
+        <div class="logo-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" alt="Partner 1" />
+        </div>
+        <div class="logo-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" alt="Partner 2" />
+        </div>
+        <div class="logo-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" alt="Partner 3" />
+        </div>
+        <div class="logo-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" alt="Partner 4" />
+        </div>
+        <div class="logo-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" alt="Partner 5" />
+        </div>
+        <div class="logo-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" alt="Partner 6" />
+        </div>
+        <div class="logo-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" alt="Partner 7" />
+        </div>
+        
+        <!-- Duplicate set of slides for seamless loop -->
+        <div class="logo-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" alt="Partner 1" />
+        </div>
+        <div class="logo-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" alt="Partner 2" />
+        </div>
+        <div class="logo-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" alt="Partner 3" />
+        </div>
+        <div class="logo-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" alt="Partner 4" />
+        </div>
+        <div class="logo-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" alt="Partner 5" />
+        </div>
+        <div class="logo-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" alt="Partner 6" />
+        </div>
+        <div class="logo-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" alt="Partner 7" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add new section: Why Salt? -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8">Die Energie steckt im Salz</h2>
+      <p class="text-lg text-gray-600 leading-relaxed mb-8">
+        Salzschmelze findet seit Jahrzehnten Anwendung als sensibles oder latentes Speichermedium in zahlreichen thermischen Solarkraftwerken. Der Salzspeicher arbeitet in deutlich höheren Temperaturen als Wasser ohne erhöhten Druck, und leitet Wärme effizienter als Feststoffspeichermedium. Die hervorragenden Eigenschaften der Salzschmelze machen sie zu einem kosteneffizienten Strom- und Wärmespeicher für große Speicherkapazitäten.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-secondary text-white py-12">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-lg">&copy; KIT - The Research University in the Helmholtz Association</p>
+      <p class="text-gray-300 mt-4">Last updated: 26.03.2025</p>
+    </div>
+  </footer>
+</body>
+
+</html>
